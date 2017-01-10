@@ -4,24 +4,30 @@ This README would normally document whatever steps are necessary to get your app
 
 ### What is this repository for? ###
 
-the following link takes you to the website which is already loaded onto a server: http://b2a0ff5b.ngrok.io
+This repository contains the files neccecary to develop an online Clinical Trials Manager. It randomises the treatments given to patients.
+
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
 
-### Contribution guidelines ###
+REQUIRED: 
+ - PHP version 5.3 + (version 7.0+ will not work well)
+ - MariaDB 9+, 
+ - SQLite 2.8.17/3.7.17 (or PphMyAdmin) 
+ 
+SET-UP:
+ - Simply just place the 'pt' directory at the root destination of the server
+ - database information may need to be configured in 'config.php' file to match with current server and database names
 
-* Writing tests
-* Code review
-* Other guidelines
+RUNNING: 
+ - To run the site, simply load up the server and open /pt/
+ - This should open the the login page
+ - A default admin account is set-up -> Email: admin@admin.com
+                                        Password: admin
+
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+* Mazen Sehgal
+* mazen.sehgal@nhs.net
+* Royal Surrey County Hospital | Scientific Computing
