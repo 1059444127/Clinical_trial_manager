@@ -11,7 +11,7 @@ This repository contains the files neccecary to develop an online Clinical Trial
 
 
 REQUIRED: 
- - PHP version 5.3 + (version 7.0+ will not work well)
+ - PHP version 5.3 + (version 7.0+ will not work)
  - MariaDB 9+, 
  - SQLite 2.8.17/3.7.17 (or PphMyAdmin) 
  
@@ -29,7 +29,7 @@ RUNNING:
 
 NOTICE:
  - IMPORTANT TO NOTE:-
-     - ## **CREATE TRIAL -> CREATE HOSPITALS -> CREATE USERS** ##
+     -  **CREATE TRIAL -> CREATE HOSPITALS -> CREATE USERS** 
 
 ### Who do I talk to? ###
 
