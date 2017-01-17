@@ -26,6 +26,11 @@ RUNNING:
                                         Password: admin
 
 
+
+NOTICE:
+ - IMPORTANT TO NOTE:-
+     - ## **CREATE TRIAL -> CREATE HOSPITALS -> CREATE USERS** ##
+
 ### Who do I talk to? ###
 
 * Mazen Sehgal
