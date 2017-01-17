@@ -1,4 +1,7 @@
 # README #
+**NOTICE:
+ - IMPORTANT TO NOTE:-
+     -  CREATE TRIAL -> CREATE HOSPITALS -> CREATE USERS** 
 
 This README would normally document whatever steps are necessary to get your application up and running.
 
@@ -27,9 +30,7 @@ RUNNING:
 
 
 
-NOTICE:
- - IMPORTANT TO NOTE:-
-     -  **CREATE TRIAL -> CREATE HOSPITALS -> CREATE USERS** 
+
 
 ### Who do I talk to? ###
 
