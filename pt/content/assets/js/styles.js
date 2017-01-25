@@ -1464,7 +1464,7 @@ function delete_function(btn){
 			if(res == 1){
 				if(hide == '1'){
 					if(process == 'booking'){
-						alert_notification('Success !','Booking has been successfully cancelled !','success');
+						alert_notification('Success !','Clinic confirmation has been successfully cancelled !','success');
 						setTimeout(function(){ window.location.reload();},1000);
 					}
 				}else{
@@ -1556,7 +1556,12 @@ function get_available_clinics(_date){
 }
 
 function book_clinic(btn){
-	var _this = $(btn);
+    var lala = $('form').serialize();
+    var new12 = lala.replace(/[^0-9]/g, '');
+console.log("NUM: = " + new12);
+    
+    
+    var _this = $(btn);
 	var spinner = '<i class="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i> Processing';
 	var clinic_id = _this.data('id');
 	var btn_text = _this.html();
@@ -1566,7 +1571,9 @@ function book_clinic(btn){
 		type : 'POST',
 		data: {
 			'action' : 'add_new_booking',
-			'clinic' : clinic_id
+			'clinic' : clinic_id,
+            'number' : new12
+            
 		},
 		url  : ajax_url,
 		success : function(res){
@@ -1588,3 +1595,4 @@ function book_clinic(btn){
 		}
 	});
 }
+

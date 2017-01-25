@@ -22,7 +22,7 @@ else:
 				<tr>
 					<th class="text-center">Site Manager</th>
 					<th class="text-center">Trial Manager</th>
-					<th class="text-center">Staff</th>
+					<th class="text-center">Data Manager</th>
 				</tr>
 			</thead>
 			<tbody>

@@ -11,7 +11,7 @@
 	$upload_img = ABSPATH . CONTENT . $upload_str;
 	$upload_url = '/content/'.$upload_str;
 	if (!file_exists($upload_img))
-		mkdir($upload_img, 0755, true);
+
 		
 	//CHANGE PASSWORD PROCESS
 	if(isset($_POST['action']) && $_POST['action'] == 'user_password_change'){

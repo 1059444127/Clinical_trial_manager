@@ -195,7 +195,8 @@ $result = $db->query($sql);
     ?>
                             <form method="post">
                                 <input type="hidden" name="num2" value="<?php echo $data->ID; ?>">
-                                <input type="submit" value="ACTIVATE"> </form>
+                                <input type="submit" value="ACTIVATE"> 
+                        </form>
                             <?
   }
                     else{

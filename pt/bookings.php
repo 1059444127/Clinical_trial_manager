@@ -28,9 +28,13 @@ login_check();
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<div class="x_panel">
 							<div class="x_title">
-								<?php if( user_can('make_booking') && !is_admin()): ?>
-								<a href="<?php echo site_url();?>/add-new-booking/" class="btn btn-dark btn-sm">Add New Booking</a>
+								
+
+                                <?php if( user_can('make_booking') && !is_admin()): ?>
+								<a href="<?php echo site_url();?>/add-new-booking/" class="btn btn-dark btn-sm">Finalise Clinics</a>
+                                
 								<?php endif; ?>
+                                
 								<div class="clearfix"></div>
 							</div>
 							<div class="x_content">

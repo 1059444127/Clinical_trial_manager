@@ -234,7 +234,8 @@
 
 	//ADD NEW CLINIC  PROCESS
 	if(isset($_POST['action']) && $_POST['action'] == 'add_new_clinic'){
-		extract($_POST);
+
+        extract($_POST);
 		
                         $query = "SELECT `RandomString` FROM tbl_randomised WHERE `HospitalID` = $hospital AND `trialID` = $trial";
         

@@ -8,7 +8,7 @@ if ( !function_exists('get_roles') ) :
 			'admin' => 'Admin',
 			'site_manager' => 'Site Manager',
 			'trial_manager' => 'Trial Manager',
-			'staff' => 'Staff'
+			'staff' => 'Data Manager'
 		);
 		return $data;
 	}

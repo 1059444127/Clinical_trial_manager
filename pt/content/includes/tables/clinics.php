@@ -60,9 +60,20 @@ else:
 				<td><?php echo stripslashes($room->name);?></td>
 				<td><?php echo date('M d,Y',strtotime($data->created_on));?></td>
 				<td class="text-center">
-					<?php if( user_can('view_clinic') ): ?>
-					<a href="<?php echo site_url();?>/appointments/?id=<?php echo $data->ID;?>" class="btn btn-success btn-xs"><i class="fa fa-users"></i> Appointments</a>
+                    
+                    <?php if( user_can('view_clinic') ): ?>
+					<a href="<?php echo site_url();?>/appointments/?id=<?php echo $data->ID;?>" class="btn btn-primary btn-xs"><i class="fa fa-users"></i> Randomise Clinic</a>
 					<?php endif; ?>
+                    <?php
+
+                        $cj = "SELECT status FROM tbl_bookings WHERE clinic = $data->ID";
+                    $cjr = $db->query($cj);
+                    if($cjr = 0){
+					 if( user_can('view_clinic') ): ?>
+					<a href="<?php echo site_url();?>/appointments/?id=<?php echo $data->ID;?>" class="btn btn-success btn-xs"><i class="fa fa-users"></i><?php  echo "View completion info";?></a>
+					<?php endif; 
+                    }
+                    ?>
 					
 					<?php if( user_can('edit_clinic') ): ?>
 					<a href="<?php echo site_url();?>/edit-clinic/?id=<?php echo $data->ID;?>" class="btn btn-dark btn-xs"><i class="fa fa-edit"></i> Edit</a>

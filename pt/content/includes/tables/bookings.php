@@ -14,7 +14,7 @@ $results = get_tabledata(TBL_BOOKINGS,false,$args);
 if( !user_can('view_booking') || is_admin() ):
 	echo page_not_found('Oops ! You are not allowed to view this page.','Please check other pages !');
 elseif(!$results):
-	echo page_not_found("Oops! There is no bookings record found",'  ',false);
+	echo page_not_found("Oops! No Completed clinics have been found",'  ',false);
 else:
 		
 
@@ -30,7 +30,7 @@ else:
            
             ?>
 			<tr>
-				<th class="text-center">Booking ID</th>
+				<th class="text-center">Completion ID</th>
 				<th class="text-center">Clinic ID</th>
                 <th class="text-center">Hospital ID</th>
                 <th class="text-center">Treatment given</th>
@@ -111,36 +111,9 @@ else:
     ?>
 
                     
-                     <?php 
-if($_SERVER['REQUEST_METHOD'] == "POST"){
-    $val = $_POST['num'];
-    $val2 = $_POST['num2'];
-    $status = 1;
-    $sql = "UPDATE tbl_bookings SET actual=$val, status = $status WHERE ID = $val2";
-$result = $db->query($sql);
-    echo "<script>";
-        echo "window.onload = function() {
-    if(!window.location.hash) {
-        window.location = window.location + '#loaded';
-        window.location.reload();
-    }
-}";
-        echo "</script>";
-    }
-    
 
 
-    
-    
-
-   ?>
-
-    <form  method="post">
-            <input type="hidden" name="num2" value = "<?php echo $data->ID; ?>">
-    <input type="text" name="num" placeholder="Actual attendance" >
-    <input type="submit" value ="Attendance">
-        
-    </form>
+   
     
     
 <p id="demo"></p>

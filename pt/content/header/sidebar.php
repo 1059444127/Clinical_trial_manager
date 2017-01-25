@@ -202,14 +202,14 @@ if ( !defined('ABSPATH') )
 					
 					<?php if( user_can('view_booking') && !is_admin() ): ?>
 					<li>
-						<a><i class="fa fa-bookmark-o"></i> Manage Bookings<span class="fa fa-chevron-down"></span>	</a>
+						<a><i class="fa fa-bookmark-o"></i> Completed Clinics<span class="fa fa-chevron-down"></span>	</a>
 						<ul class="nav child_menu">
 							<?php if( user_can('view_booking') && !is_admin() ): ?>
-							<li><a href="<?php echo site_url();?>/bookings/">All Bookings</a></li>
+							<li><a href="<?php echo site_url();?>/bookings/">List Completed clinics</a></li>
 							<?php endif;?>
 							
 							<?php if( user_can('make_booking') && !is_admin() ): ?>
-							<li><a href="<?php echo site_url();?>/add-new-booking/">Add New Booking</a></li>
+							<li><a href="<?php echo site_url();?>/add-new-booking/">Finalise Clincs</a></li>
 							<?php endif;?>
 						</ul>	
 					</li>

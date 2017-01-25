@@ -7,6 +7,8 @@
 		exit();
 	}
 
+
+
 	//ADD NEW BOOKING PROCESS
 	if(isset($_POST['action']) && $_POST['action'] == 'add_new_booking'){
 		extract($_POST);
@@ -30,14 +32,18 @@
 					'ID' => $guid,
 					'clinic' => $clinic,
 					'user_id' => $current_user_id,
-                    'status' => 2
+                    'status' => 1,
+                    'actual' => $number
 				)
+                                  
 			);
 		
 			if($result):
 				$notification_args = array(
 					'title' => 'New Clinic Booking',
 					'notification' => 'You have successfully booked a clinic (#'.$clinic.').',
+                    
+                    
 				);
 				
 				add_user_notification($notification_args);
@@ -82,4 +88,6 @@
 		endif;
 		exit;	
 	}
+
+
 ?>

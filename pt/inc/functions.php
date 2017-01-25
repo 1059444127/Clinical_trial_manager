@@ -580,6 +580,10 @@ if ( !function_exists('get_calendar_data') ) :
 	}
 endif;
 
+
+
+
+
 if ( !function_exists('get_available_clinics') ) :
 	function get_available_clinics($date){
 		global $db;
@@ -604,12 +608,21 @@ if ( !function_exists('get_available_clinics') ) :
 							<p><strong> Trial : </strong> <?php echo stripslashes($trial->name);?></p>
                             <p><strong> Expected Participants: </strong> <?php echo stripslashes($data->expected);?></p>
 							<p><small><?php echo date('M d, Y', strtotime($data->schedule));?></small></p>
+                            
+                            
 						</div>
 						<div class="col-xs-12 col-sm-4">
 							<?php if(is_clinic_booked($data->ID)): ?>
-								<button class="btn btn-dark btn-md booking-btn" onclick="javascript:void(0);"><i class="fa fa-check-square"></i>&nbsp; Booked</button>
+								<button class="btn btn-dark btn-md booking-btn" onclick="javascript:void(0);"><i class="fa fa-check-square"></i>&nbsp; COMPLETED</button>
 							<?php else: ?>
-								<button class="btn btn-success btn-md booking-btn" data-id="<?php echo $data->ID;?>" onclick="javascript:book_clinic(this);"><i class="fa fa-plus-square"></i>&nbsp; Book Clinic</button>
+    
+                            
+    <form  method="post">
+    <input type="text" name="num" placeholder="Actual attendance" >
+								<button class="btn btn-success btn-md booking-btn" data-id="<?php echo $data->ID;?>" onclick="javascript:book_clinic(this);"><i class="fa fa-plus-square"></i>&nbsp; COMPLETE</button>
+        
+    </form>
+
 							<?php endif;?>
 						</div>
 					</div>

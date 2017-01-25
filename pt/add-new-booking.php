@@ -9,7 +9,7 @@ login_check();
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add New Booking &mdash; <?php echo get_site_name();?></title>
+	<title>Finalise Clinics &mdash; <?php echo get_site_name();?></title>
 	
 	<?php echo get_wp_head();?>
 </head>
@@ -22,7 +22,7 @@ login_check();
 		<!-- page content -->
 		<div class="right_col" role="main">
 			<div class="">
-				<?php echo get_page_header('Add New Booking'); ?>
+				<?php echo get_page_header('Select clinic to finalise'); ?>
 				
 				<div class="row">
 					<div class="col-md-12 col-sm-12 col-xs-12">
