@@ -56,7 +56,7 @@ else:
                     echo $wt2{0}->hospital;
                     $valr= $wt2{0}->hospital;
                     ?></td>
-                <td>
+                
                 <?php
                  
                     $query = "SELECT * FROM ".TBL_CLINICS." WHERE `ID` = '$data->clinic' AND hospital = $valr";
@@ -69,15 +69,18 @@ else:
                
                     
                     				foreach($result2 as $data3):
-                    $query3 = "SELECT name FROM tbl_treatments WHERE ID = $data3->TreatmentID";
+                    $query3 = "SELECT * FROM tbl_treatments WHERE ID = $data3->TreatmentID";
                     $result3 =$db->get_results($query3);
                     foreach($result3 as $data3):
                     echo $data3->name;
+                    $dat1 = $data3->colour;
+                $string = '"'.trim($dat1,'"').'"';
+                echo "<td bgcolor = ".$string.">".$data3->name."</td>";
                                     endforeach;
                     				endforeach;                    
                     				endforeach;
                     ?>
-                </td>
+
                 <td><?php
                     $query = "SELECT `expected` FROM ".TBL_CLINICS." WHERE `ID` = '$data->clinic'";
 										$result = $db->get_results($query);

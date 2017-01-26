@@ -36,10 +36,8 @@ else:
 			<tr>
 				<td>#<?php echo stripslashes($data->ID);?></td>
 				<td><?php echo stripslashes($trial->name);?></td>
-                <td>
-                    <?php
-                    
-                    $query1234 = "SELECT * FROM tbl_key WHERE TrialID = $data->trial AND KeyVal = $data->treatment";
+                <?php
+                 $query1234 = "SELECT * FROM tbl_key WHERE TrialID = $data->trial AND KeyVal = $data->treatment";
                     $result5 = $db->get_results($query1234);
                     $vato = $result5[0];
                                   $bbo2 = ($vato->TreatmentID);
@@ -49,12 +47,18 @@ else:
                     $result6 = $db->get_results($query12345);
                     $vato2 = $result6[0];
                                   $bbo3 = ($vato2->name);
-                    echo $bbo3;
+                                                      $bbo4 = ($vato2->colour);
+                
+                $string = '"'.trim($bbo4,'"').'"';
+                ?>
+                
+
+                    <?php
+                    echo "<td bgcolor=".$string.">".$bbo3."</td>";
                     
                     
                     
                     ?>
-                </td>
 				<td><?php echo date('M d,Y',strtotime($data->schedule));?></td>
 				<td><?php echo stripslashes($hospital->name);?></td>
 				<td><?php echo stripslashes($room->name);?></td>
@@ -62,8 +66,22 @@ else:
 				<td class="text-center">
                     
                     <?php if( user_can('view_clinic') ): ?>
-					<a href="<?php echo site_url();?>/appointments/?id=<?php echo $data->ID;?>" class="btn btn-primary btn-xs"><i class="fa fa-users"></i> Randomise Clinic</a>
-					<?php endif; ?>
+                    <?php if($data->ID)
+    
+    $chk = "SELECT COUNT(*) as res FROM tbl_bookings WHERE clinic = $data->ID";
+                    $cc = $db->get_results($chk);
+                    $val6 = $cc[0]->res;
+                if($val6>0){    
+                        ?>
+					<a href="<?php echo site_url();?>/appointments/?id=<?php echo $data->ID;?>" class="btn btn-primary btn-xs"><i class="fa fa-users"></i> View completion info</a>
+                    
+					<?php 
+                }else{
+                    echo "INCOMPLETE";
+                    echo "<br>";
+                }
+                    
+                    endif; ?>
                     <?php
 
                         $cj = "SELECT status FROM tbl_bookings WHERE clinic = $data->ID";

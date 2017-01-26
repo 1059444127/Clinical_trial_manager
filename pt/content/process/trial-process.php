@@ -413,7 +413,8 @@ $result = $db->query($sql);
 					'hospital' => $hospital,
 					'trial' => $trial,
 					'name' => $name,
-					'weight' => $weight,	
+					'weight' => $weight,
+                'colour' => $colour
 				)
 			);
 			
@@ -457,6 +458,7 @@ $result = $db->query($sql);
 					'name' => $name,
 					'trial' => $trial,
 					'weight' => $weight,
+                'colour' => $colour
 				),
 				array(
 					'ID' => $treatment_id
