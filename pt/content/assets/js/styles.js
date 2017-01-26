@@ -1581,14 +1581,14 @@ console.log("NUM: = " + new12);
 			_this.html(btn_text);
 			$('.booking-btn').attr('disabled',false);
 			if(res == 0 ){ // if failed then go inside
-				alert_notification('Failed','Could not book clinic, please try again','info');
+				alert_notification('Failed','Could not Close clinic, please try again','info');
 			}else if(res == 2 ){ // if failed then go inside
-				alert_notification('Failed','You have already booking this clinic','info');
+				alert_notification('Failed','You have already closed this Clinic','info');
 			}else if (res == 1 ){ // if success then go inside
-				alert_notification('Success !','you have successfully booked a clinic !','success');
+				alert_notification('Success !','Clinic has been closed!','success');
 				$('.booking_close').click();
 			}else{
-				alert_notification('Failed','Could not book clinic, Please try again !','info');
+				alert_notification('Failed','Could not Close clinic, Please try again !','info');
 				console.log(res);
 			}
 			return false;

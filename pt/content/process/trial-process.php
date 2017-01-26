@@ -25,7 +25,9 @@
 					'participants' => $participants
 				)
 			);
-		
+		  $sql = "INSERT INTO tbl_done (TrialID, HospitalID) VALUES ($guid,$hospital)";
+        $don = $db->query($sql);
+        
 			if($result):
 				$notification_args = array(
 					'title' => 'New Trial Created ',

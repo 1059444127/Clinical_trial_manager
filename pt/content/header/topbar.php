@@ -54,6 +54,7 @@ $result = get_tabledata(TBL_NOTIFICATIONS,false,$args,$query);
 									</span>
 								<span>
 									<span>You</span>
+                                    <?php date_default_timezone_set('GMT');?>
 									<span class="time"><small><?php echo date('M d, Y h:i a',strtotime($notifications->date));?></small></span>
 								</span>
 								<span class="message"><?php echo strip_tags(stripslashes(htmlspecialchars_decode($notifications->notification)));?></span>

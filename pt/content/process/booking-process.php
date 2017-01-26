@@ -35,13 +35,18 @@
                     'status' => 1,
                     'actual' => $number
 				)
+
                                   
 			);
 		
+                                          $num11 = 1;
+                                  $q1 = "UPDATE tbl_clinics SET booked = $num11 WHERE ID = $clinic";
+                                  $qw = $db->query($q1);
+        
 			if($result):
 				$notification_args = array(
 					'title' => 'New Clinic Booking',
-					'notification' => 'You have successfully booked a clinic (#'.$clinic.').',
+					'notification' => 'You have successfully finalised a Clinic (#'.$clinic.').',
                     
                     
 				);

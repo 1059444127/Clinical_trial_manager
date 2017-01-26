@@ -567,11 +567,16 @@ endif;
 if ( !function_exists('get_calendar_data') ) :
 	function get_calendar_data(){
 		global $db;
+        
 		$results = get_tabledata(TBL_CLINICS,false,array(),'GROUP BY `schedule`',array('COUNT(ID) as count' , 'schedule'));
+
+        //should only show current hospitals clinics
 		if($results):
 			$return = array();
 			foreach($results as $data):
+        
 				array_push($return, array('title' => 'Available Clinics ('.$data->count.')' , 'start' => date('Y-m-d',strtotime($data->schedule ) ) ) );
+        
 			endforeach;
 			return json_encode($return);
 		else:
@@ -594,6 +599,7 @@ if ( !function_exists('get_available_clinics') ) :
 			<ul class="list-unstyled booking_clinics top_profiles scroll-view">
 			<?php 
 			foreach($results as $data):
+        if($data->booked == 0){
 				$trial = get_tabledata(TBL_TRIALS,true, array('ID' => $data->trial));
 				$hospital = get_tabledata(TBL_HOSPITALS,true, array('ID' => $data->hospital));
 				$room = get_tabledata(TBL_ROOMS,true, array('ID' => $data->room));
@@ -618,7 +624,8 @@ if ( !function_exists('get_available_clinics') ) :
     
                             
     <form  method="post">
-    <input type="text" name="num" placeholder="Actual attendance" >
+        <p>Number consented: </p>
+    <input type="text" name="num" value = "0" >
 								<button class="btn btn-success btn-md booking-btn" data-id="<?php echo $data->ID;?>" onclick="javascript:book_clinic(this);"><i class="fa fa-plus-square"></i>&nbsp; COMPLETE</button>
         
     </form>
@@ -628,6 +635,7 @@ if ( !function_exists('get_available_clinics') ) :
 					</div>
 				</li>
 				<?php
+        }
 			endforeach;
 			?>
 			</ul>
