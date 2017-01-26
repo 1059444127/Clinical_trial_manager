@@ -1,7 +1,5 @@
 # README #
-**NOTICE:
- - IMPORTANT TO NOTE:-
-     -  CREATE TRIAL -> CREATE HOSPITALS -> CREATE USERS** 
+
 
 This README would normally document whatever steps are necessary to get your application up and running.
 
@@ -28,7 +26,12 @@ RUNNING:
  - A default admin account is set-up -> Email: admin@admin.com
                                         Password: admin
 
-
+USING THE SYSTEM:
+ - You MUST FIRSTLY CREATE A NEW HOSPITAL
+ - CREATE A NEW TRIAL AND ASSIGN ABOVE HOSPITAL AS LEAD HOSPITAL
+ - CREATE AND ASSIGN TREATMENTS TO TRIAL
+ - ADD MORE HOSPITALS TO PARTICIPATE IN TRIAL
+ - ON TRIALS PAGE, PRESS 'ACTIVATE' BUTTON TO ENABLE THE TRIAL PROCESS
 
 
 
