@@ -568,7 +568,7 @@ if ( !function_exists('get_calendar_data') ) :
 	function get_calendar_data(){
 		global $db;
         
-		$results = get_tabledata(TBL_CLINICS,false,array(),'GROUP BY `schedule`',array('COUNT(ID) as count' , 'schedule'));
+		$results = get_tabledata(TBL_CLINICS,false,array( 'booked' => 0 ),'GROUP BY `schedule`',array('COUNT(ID) as count' , 'schedule'));
 
         //should only show current hospitals clinics
 		if($results):
