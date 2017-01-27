@@ -52,13 +52,9 @@ else:
                 $string = '"'.trim($bbo4,'"').'"';
                 ?>
                 
-
-                    <?php
-                    echo "<td bgcolor=".$string.">".$bbo3."</td>";
-                    
-                    
-                    
-                    ?>
+<td bgcolor =<?php echo $string; ?>><?php echo $bbo3; ?></td>
+        
+    
 				<td><?php echo date('M d,Y',strtotime($data->schedule));?></td>
 				<td><?php echo stripslashes($hospital->name);?></td>
 				<td><?php echo stripslashes($room->name);?></td>
