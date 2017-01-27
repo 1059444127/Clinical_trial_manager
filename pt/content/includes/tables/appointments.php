@@ -22,7 +22,8 @@ else:
 				<th>User Name</th>
 				<th>User Email</th>
 				<th>Status</th>
-				<th>Booked On</th>
+				<th>Clinic Date </th>
+				<th>Closure Date</th>
 				<th class="text-center">Actions</th>
 			</tr>
 		</thead>
@@ -36,7 +37,14 @@ else:
 				<td>#<?php echo stripslashes($data->ID);?></td>
 				<td><?php echo stripslashes($user->first_name .' '. $user->last_name);?></td>
 				<td><?php echo stripslashes($user->user_email);?></td>
-				<td><?php echo ($data->status == 1) ? '<span class="label label-success">Active</span>' : '<span class="label label-danger">Canceled</span>'; ?></td>
+				<td><?php echo ($data->status == 1) ? '<span class="label label-success">Completed</span>' : '<span class="label label-danger">Canceled</span>'; ?></td>
+				<td><?php 
+                    $qer = "SELECT * FROM tbl_clinics WHERE ID = $data->clinic";
+                    $qw = $db->get_results($qer);
+                    
+                    echo date('M d,Y',strtotime($qw[0]->schedule));
+                    
+                    ?></td>
 				<td><?php echo date('M d,Y',strtotime($data->created_on));?></td>
 				<td class="text-center">
 					<?php if($data->status == 1 && user_can('cancel_booking') ): ?>

@@ -36,8 +36,9 @@ else:
                 <th class="text-center">Treatment given</th>
                 <th class="text-center">Expected Attendance</th>
                 <th class="text-center">Actual Attendance</th>
-				<th class="text-center">Booking Date</th>
-				<th class="text-center">Booking Status</th>
+				<th class="text-center">Clinic Date</th>
+				<th class="text-center">Completion Date</th>
+				<th class="text-center">Completion Status</th>
 				<th class="text-center">Actions</th>
 			</tr>
 		</thead>
@@ -92,6 +93,16 @@ else:
                     ?></td>
                 <td><?php if(($data->actual)<1||$data->actual==null){echo "N/A";}else{
                     echo stripslashes($data->actual);}?></td>
+                <td>
+                    <?php 
+                    $qw = "SELECT * FROM tbl_clinics WHERE ID = $data->clinic";
+                    $qq12 = $db->get_results($qw);
+                    
+
+                    echo date('M d,Y',strtotime($qq12[0]->schedule));
+                    
+                    ?>
+                </td>
 				<td><?php echo date('M d,Y',strtotime($data->created_on));?></td>
 				
                 <td>

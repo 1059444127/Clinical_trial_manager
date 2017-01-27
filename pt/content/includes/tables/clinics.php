@@ -77,7 +77,7 @@ else:
                     
 					<?php 
                 }else{
-                    echo "INCOMPLETE";
+                    echo "<b>AWAITING CLOSURE</b>";
                     echo "<br>";
                 }
                     

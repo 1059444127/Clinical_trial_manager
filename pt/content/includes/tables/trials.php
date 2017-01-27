@@ -216,6 +216,7 @@ $result = $db->query($sql);
                     </td>
                 </tr>
                 <?php
+            
 				endforeach;
 			endif;
 			?>
