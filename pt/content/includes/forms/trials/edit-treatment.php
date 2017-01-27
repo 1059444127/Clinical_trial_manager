@@ -63,7 +63,7 @@ else:
     <option value="#FFFF00" style="background: #FFFF00"> Yellow            </option>
     <option value="#80FF00" style="background: #80FF00">Green           </option>
     <option value="#00FFFF" style="background: #00FFFF">Blue               </option>
-    <option value="#0000FF" style="background: #0000FF">Indego             </option>
+    <option value="#0000FF" style="background: #0000FF">Indigo             </option>
     <option value="#7F00FF" style="background: #7F00FF">Violet             </option>
 </select>
         </div>
