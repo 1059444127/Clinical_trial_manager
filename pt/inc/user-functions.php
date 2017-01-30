@@ -524,7 +524,7 @@ if ( !function_exists('can_access') ) :
 			case 'trial_type':
 					$trial_type = get_tabledata(TBL_TRIAL_TYPES, true, array('ID' => $id));
 					if($trial_type):
-						return ($trial_type->hospital == $current_user_hospital) ? true : false;
+                
 					else:
 						return false;
 					endif;

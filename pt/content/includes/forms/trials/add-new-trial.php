@@ -39,7 +39,7 @@ else:
 				<?php
 					$args = (!is_admin()) ? array('hospital' => get_current_user_hospital()) : array();
 					$data = get_tabledata(TBL_TRIAL_TYPES,false,$args);
-					$option_data = get_option_data($data,array('ID','name'),true);
+					$option_data = get_option_data($data,array('ID','name'));
 					echo get_options_list($option_data);
 					?>
 			</select>
@@ -52,7 +52,7 @@ else:
 				<?php
 					$args = (!is_admin()) ? array('hospital' => get_current_user_hospital()) : array();
 					$data = get_tabledata(TBL_RAND_TYPES,false,$args);
-					$option_data = get_option_data($data,array('ID','name'),true);
+					$option_data = get_option_data($data,array('ID','name'));
 					echo get_options_list($option_data);
 					?>
 			</select>

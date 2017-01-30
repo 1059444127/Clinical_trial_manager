@@ -126,8 +126,7 @@
 		
 		if( user_can('add_trial_type') ):
 			$validation_args = array(
-				'name' => $name,
-				'hospital' => $hospital,
+				'name' => $name
 			);
 			
 			if(is_value_exists(TBL_TRIAL_TYPES,$validation_args)){
@@ -138,7 +137,6 @@
 			$result = $db->insert(TBL_TRIAL_TYPES,
 				array(
 					'ID' => $guid,
-					'hospital' => $hospital,
 					'name' => $name,
 					'description' => addslashes($description),
 				)
@@ -169,7 +167,6 @@
 		if( user_can('edit_trial_type') && can_access('trial_type', $trial_type_id) ):
 			$validation_args = array(
 				'name' => $name,
-				'hospital' => $hospital,
 			);
 		
 			if(is_value_exists(TBL_TRIAL_TYPES,$validation_args,$trial_type_id)){
@@ -180,7 +177,6 @@
 			$result = $db->update(TBL_TRIAL_TYPES,
 				array(
 					'name' => $name,
-					'hospital' => $hospital,
 					'description' => addslashes($description),
 				),
 				array(
@@ -254,8 +250,7 @@
 				'hospital' => $hospital,
 				'schedule' => date('Y-m-d',strtotime($schedule)),
 				'room' => $room,
-                'expected' => $expected,
-                'treatment' => $last
+                'expected' => $expected
 			);
 			
 			if(is_value_exists(TBL_CLINICS,$validation_args)){
@@ -397,7 +392,6 @@ $result = $db->query($sql);
 			$validation_args = array(
 				'name' => $name,
 				'trial' => $trial,
-				'hospital' => $hospital,
 			);
 			
 			if(is_value_exists(TBL_TREATMENTS,$validation_args)){
@@ -410,7 +404,6 @@ $result = $db->query($sql);
 			$result = $db->insert(TBL_TREATMENTS,
 				array(
 					'ID' => $guid,
-					'hospital' => $hospital,
 					'trial' => $trial,
 					'name' => $name,
 					'weight' => $weight,
@@ -442,7 +435,6 @@ $result = $db->query($sql);
 		
 		if( user_can('edit_treatment') && can_access('treatment', $treatment_id) ):
 			$validation_args = array(
-				'hospital' => $hospital,
 				'name' => $name,
 				'trial' => $trial,
 			);
@@ -454,7 +446,6 @@ $result = $db->query($sql);
 					
 			$result = $db->update(TBL_TREATMENTS,
 				array(
-					'hospital' => $hospital,
 					'name' => $name,
 					'trial' => $trial,
 					'weight' => $weight,

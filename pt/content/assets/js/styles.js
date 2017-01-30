@@ -1038,7 +1038,7 @@ $(document).ready(function() {
 					alert_notification('Failed','Could not update clinic, Please try again !','info');
 				}else if(res == 2 ){ // if failed then go inside
 					class_name.parents('.form-group').addClass('has-error');
-					alert_notification('Clinic Already Exist','Clinic name you entered is already exists, please try another clinic name !','info');
+					alert_notification('There is already a clinic booked for this Day with a treatment already set. please select a new date!','info');
 				}else if (res == 1 ){ // if success then go inside
 					alert_notification('Success !','Clinic has been successfully updated !','success');
 					window.scrollTo(0,0);

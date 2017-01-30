@@ -24,7 +24,7 @@ else:
 		</div>
 		<?php if(is_admin()): ?>
 		<div class="form-group">
-			<label for="hostipals">Hospital <span class="required">*</span></label>
+			<label for="hostipals">Lead Hospital <span class="required">*</span></label>
 			<select name="hospital" class="form-control select_single require" tabindex="-1" data-placeholder="Choose hospital" >
 				<?php
 				$args = (!is_admin()) ? array('ID' => get_current_user_hospital()) : array();

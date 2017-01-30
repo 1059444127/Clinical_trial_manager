@@ -8,7 +8,7 @@ $results = get_tabledata(TBL_TRIALS,false,$args);
 if( !user_can('view_trial') ):
 	echo page_not_found('Oops ! You are not allowed to view this page.','Please check other pages !');
 elseif(!$results):
-	echo page_not_found("Oops! There is no trials record found",'  ',false);
+	echo page_not_found("There are currently no Trials created.",'  ',false);
 else:
 ?>
     <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap datatable-buttons" cellspacing="0" width="100%">

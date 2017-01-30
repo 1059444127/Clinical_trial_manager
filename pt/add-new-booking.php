@@ -22,7 +22,8 @@ login_check();
 		<!-- page content -->
 		<div class="right_col" role="main">
 			<div class="">
-				<?php echo get_page_header('Select clinic to finalise'); ?>
+				<?php echo get_page_header('Select clinic to finalise'); 
+                ?>
 				
 				<div class="row">
 					<div class="col-md-12 col-sm-12 col-xs-12">

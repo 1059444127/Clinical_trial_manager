@@ -12,17 +12,7 @@ else:
 			<input type="text" name="name" class="form-control require"/>
 		</div>
 		<?php if(is_admin()): ?>
-		<div class="form-group">
-			<label for="hostipals">Hospital <span class="required">*</span></label>
-			<select name="hospital" class="form-control select_single require" tabindex="-1" data-placeholder="Choose hospital" >
-				<?php
-				$args = (!is_admin()) ? array('ID' => get_current_user_hospital()) : array();
-				$data = get_tabledata(TBL_HOSPITALS,false,$args);
-				$option_data = get_option_data($data,array('ID','name'));
-				echo get_options_list($option_data);
-				?>
-			</select>
-		</div>
+		
 		<?php else: ?>
 			<input type="hidden" name="hospital" value="<?php echo get_current_user_hospital();?>" class="require"/>
 		<?php endif; ?>

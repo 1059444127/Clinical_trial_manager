@@ -19,17 +19,7 @@ else:
 			<input type="text" name="name" class="form-control require" value="<?php echo stripslashes($result->name);?>"/>
 		</div>
 		<?php if(is_admin()): ?>
-		<div class="form-group">
-			<label for="hostipals">Hospital <span class="required">*</span></label>
-			<select name="hospital" class="form-control select_single require" tabindex="-1" data-placeholder="Choose hospital" >
-				<?php
-				$args = (!is_admin()) ? array('ID' => get_current_user_hospital()) : array();
-				$data = get_tabledata(TBL_HOSPITALS,false,$args);
-				$option_data = get_option_data($data,array('ID','name'));
-				echo get_options_list($option_data,array($result->hospital));
-				?>
-			</select>
-		</div>
+		 
 		<?php else: ?>
 			<input type="hidden" name="hospital" value="<?php echo get_current_user_hospital();?>" class="require"/>
 		<?php endif; ?>
@@ -58,6 +48,27 @@ else:
                                 <div class = "form-group">
 <label for ="color">Identification Color for Treatment <span class="required">*</span></label>
                     <select name = "colour" class="form-control dropdown-toggle">
+                        
+                                                <option selected="<?php echo $result->colour;?>">
+                                                    
+                                                    <?php 
+    if($result->colour == "#FF0000"){
+    echo "Red";
+    }elseif($result->colour == "#FFA500"){
+    echo "Orange";
+    }elseif($result->colour == "#FFFF00"){
+    echo "Yellow";
+    }elseif($result->colour == "#80FF00"){
+    echo "Green";
+    }elseif($result->colour == "#00FFFF"){
+    echo "Blue";
+    }elseif($result->colour == "#0000FF"){
+    echo "Indigo";
+    }elseif($result->colour == "#7F00FF"){
+    echo "Violet";
+    }
+                                                    ?>
+                        </option>
     <option value="#FF0000" style="background: #FF0000">Red             </option>
     <option value="#FFA500" style="background: #FFA500">Orange             </option>
     <option value="#FFFF00" style="background: #FFFF00"> Yellow            </option>
@@ -65,7 +76,9 @@ else:
     <option value="#00FFFF" style="background: #00FFFF">Blue               </option>
     <option value="#0000FF" style="background: #0000FF">Indigo             </option>
     <option value="#7F00FF" style="background: #7F00FF">Violet             </option>
-</select>
+
+
+                        </select>
         </div>
         
         

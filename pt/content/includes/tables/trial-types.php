@@ -17,7 +17,6 @@ else:
 			<tr>
 				<th>Name</th>
 				<th>Description</th>
-				<th>Hospital</th>
 				<th>Created On</th>
 				<th class="text-center">Actions</th>
 			</tr>
@@ -31,7 +30,6 @@ else:
 			<tr>
 				<td><?php echo stripslashes($data->name);?></td>
 				<td><?php echo short_text(stripslashes($data->description));?></td>
-				<td><?php echo stripslashes($hospital->name);?></td>
 				<td><?php echo date('M d,Y',strtotime($data->created_on));?></td>
 				<td class="text-center">
 					<?php if( user_can('edit_trial_type') ): ?>

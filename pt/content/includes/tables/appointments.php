@@ -7,7 +7,7 @@ $args = array('clinic' => $_REQUEST['id']);
 $results = get_tabledata(TBL_BOOKINGS,false,$args);
 
 if(!isset( $_REQUEST['id'] ) && $_REQUEST['id'] == '' ):
-	echo page_not_found("Oops! There is no appointments record found",'  ',false);
+	echo page_not_found("There are currently no completed Clinics",'  ',false);
 elseif( !user_can('view_clinic') || !can_access('clinic',$_REQUEST['id']) ):
 	echo page_not_found('You are not allowed to view this page.','Please contact an Admin if you require access !');
 elseif(!$results):

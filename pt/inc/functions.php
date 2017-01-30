@@ -568,7 +568,7 @@ if ( !function_exists('get_calendar_data') ) :
 	function get_calendar_data(){
 		global $db;
         
-		$results = get_tabledata(TBL_CLINICS,false,array( 'booked' => 0 ),'GROUP BY `schedule`',array('COUNT(ID) as count' , 'schedule'));
+$results = get_tabledata(TBL_CLINICS,false,array( 'booked' => 0 , 'hospital' => get_current_user_hospital() ),'GROUP BY `schedule`',array('COUNT(ID) as count' , 'schedule'));
 
         //should only show current hospitals clinics
 		if($results):
@@ -612,6 +612,18 @@ if ( !function_exists('get_available_clinics') ) :
 								<strong>Hospital : </strong><?php echo stripslashes($hospital->name);?> (<?php echo stripslashes($room->name);?>)
 							</a>
 							<p><strong> Trial : </strong> <?php echo stripslashes($trial->name);?></p>
+                            
+
+                            <?php 
+        $omg = "SELECT * FROM tbl_key WHERE KeyVal = $data->treatment AND HospitalID = $hospital->ID AND TrialID = $trial->ID";
+            $omg1 = $db->get_results($omg);
+           
+            $val1 = $omg1[0]->TreatmentID;
+                $omg2 = "SELECT * FROM tbl_treatments WHERE ID = $val1";
+            $omg3 = $db->get_results($omg2);
+                            ?>
+							<p><strong> Treatment : </strong> <?php echo $omg3[0]->name;?></p>
+                            
                             <p><strong> Expected Participants: </strong> <?php echo stripslashes($data->expected);?></p>
 							<p><small><?php echo date('M d, Y', strtotime($data->schedule));?></small></p>
                             
@@ -624,7 +636,7 @@ if ( !function_exists('get_available_clinics') ) :
     
                             
     <form  method="post">
-        <p>Number consented: </p>
+        <p><b>Number consented: </b></p>
     <input type="text" name="num" value = "0" >
 								<button class="btn btn-success btn-md booking-btn" data-id="<?php echo $data->ID;?>" onclick="javascript:book_clinic(this);"><i class="fa fa-plus-square"></i>&nbsp; COMPLETE</button>
         

@@ -21,7 +21,6 @@ else:
 				<th>Name</th>
 				<th>Weight</th>
 				<th>Trial</th>
-				<th>Hospital</th>
 				<th>Created On</th>
 				<th class="text-center">Actions</th>
 			</tr>
@@ -34,10 +33,10 @@ else:
 				$hospital = get_tabledata(TBL_HOSPITALS,true, array('ID' => $data->hospital));
 			?>
 			<tr>
-				<td><?php echo stripslashes($data->name);?></td>
+                
+				<td bgcolor ="<?php echo $data->colour;?>"><?php echo stripslashes($data->name);?></td>
 				<td><?php echo $data->weight;?></td>
 				<td><?php echo stripslashes($trial->name);?></td>
-				<td><?php echo stripslashes($hospital->name);?></td>
 				<td><?php echo date('M d,Y',strtotime($data->created_on));?></td>
 				<td class="text-center">
 					<?php if( user_can('edit_treatment') ): ?>

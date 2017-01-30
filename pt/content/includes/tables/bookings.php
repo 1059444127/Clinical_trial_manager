@@ -14,7 +14,7 @@ $results = get_tabledata(TBL_BOOKINGS,false,$args);
 if( !user_can('view_booking') || is_admin() ):
 	echo page_not_found('Oops ! You are not allowed to view this page.','Please check other pages !');
 elseif(!$results):
-	echo page_not_found("Oops! No Completed clinics have been found",'  ',false);
+	echo page_not_found("There are currently no completed clinics records",'  ',false);
 else:
 		
 
@@ -39,7 +39,6 @@ else:
 				<th class="text-center">Clinic Date</th>
 				<th class="text-center">Completion Date</th>
 				<th class="text-center">Completion Status</th>
-				<th class="text-center">Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -113,31 +112,7 @@ else:
                         ;} 
                     ?>
                 </td>
-				<td class="text-center">	
-					<?php if($data->status == 1 && user_can('cancel_booking') ): ?>
-					<a href="#" class="btn btn-dark btn-xs" onclick="delete_function(this);" data-id="<?php echo $data->ID;?>" data-action="cancel_booking" data-hide="1" data-process="booking"><i class="fa fa-close"></i>&nbsp; Cancel</a>
-					<?php endif; ?>
-    
-                    
-                    
-                    
-                    <?php if($data->status == 2){
-    ?>
 
-                    
-
-
-   
-    
-    
-<p id="demo"></p>
-                    
-                    				<a href="#" class="btn btn-dark btn-xs" onclick="javascript:delete_function(this);" data-id="<?php echo $data->ID;?>" data-action="cancel_booking" data-hide="1" data-process="booking"><i class="fa fa-close"></i>&nbsp; Cancel</a>
-                    
-                    <?php
-		
-} ?>
-				</td>
 			</tr>
 			<?php
 				endforeach;

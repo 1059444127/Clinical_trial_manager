@@ -9,7 +9,7 @@ $results = get_tabledata(TBL_CLINICS,false,$args);
 if( !user_can('view_clinic') ):
 	echo page_not_found('Oops ! You are not allowed to view this page.','Please check other pages !');
 elseif(!$results):
-	echo page_not_found("Oops! There is no New clinics record found",'  ',false);
+	echo page_not_found("There are currently no clinic records found",'  ',false);
 else:
 ?>
 	<table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap datatable-buttons" cellspacing="0" width="100%">
@@ -20,7 +20,7 @@ else:
                 <th>Treatment</th>
 				<th>Schedule Date</th>
 				<th>Hospital</th>
-				<th>Room</th>
+				<th>Clinic Code</th>
 				<th>Created On</th>
 				<th class="text-center">Actions</th>
 			</tr>
