@@ -39,7 +39,9 @@ else:
                 <?php
                  $query1234 = "SELECT * FROM tbl_key WHERE TrialID = $data->trial AND KeyVal = $data->treatment";
                     $result5 = $db->get_results($query1234);
-                    $vato = $result5[0];
+                    
+                
+                $vato = $result5[0];
                                   $bbo2 = ($vato->TreatmentID);
 
                     

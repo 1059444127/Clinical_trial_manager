@@ -17,8 +17,9 @@ ini_set('display_errors', 0);
         <title>
             <?php echo get_site_name();?>
         </title>
-                <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-	<script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="<?php echo JS_URL;?>jquery-1.12.4.min.js"></script>
+<script src="<?php echo JS_URL;?>canvasjs.min.js"></script>
+
         <?php echo get_wp_head();?>
     </head>
 

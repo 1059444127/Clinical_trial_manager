@@ -46,15 +46,17 @@ else:
                                 <div class = "form-group">
 <label for ="color">Identification Color for Treatment <span class="required">*</span></label>
                     <select name = "colour" class="form-control dropdown-toggle">
-    <option value="#FF0000" style="background: #FF0000">Red             </option>
-    <option value="#FFA500" style="background: #FFA500">Orange             </option>
-    <option value="#FFFF00" style="background: #FFFF00"> Yellow            </option>
-    <option value="#80FF00" style="background: #80FF00">Green           </option>
-    <option value="#00FFFF" style="background: #00FFFF">Blue               </option>
-    <option value="#0000FF" style="background: #0000FF">Indigo             </option>
-    <option value="#7F00FF" style="background: #7F00FF">Violet             </option>
+    <option value="#FF0000" style="background-color: #FF0000">Red             </option>
+    <option value="#FFA500" style="background-color: #FFA500">Orange             </option>
+    <option value="#FFFF00" style="background-color: #FFFF00">Yellow            </option>
+    <option value="#80FF00" style="background-color: #80FF00">Green           </option>
+    <option value="#00FFFF" style="background-color: #00FFFF">Blue               </option>
+    <option value="#0000FF" style="background-color: #0000FF">Indigo             </option>
+    <option value="#7F00FF" style="background-color: #7F00FF">Violet             </option>
 </select>
         </div>
+        
+        
         
         
         
