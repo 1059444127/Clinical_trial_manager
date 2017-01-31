@@ -260,9 +260,61 @@
 			
 			$guid = get_guid(TBL_CLINICS);
 			
+        
+        
+                           $date1 = date_create(date('Y-m-d',strtotime($schedule)));
+                           $date2 = date_create(date('Y-m-d',strtotime($schedule2)));
+
+
+                    $diff = date_diff($date1,$date2);
+
+                    $dDiff= ($diff->d);
+        if($dDiff>1){
+
+        for($i = 0; $i<=$dDiff;$i++){
+            
+            
+        $query = "SELECT `RandomString` FROM tbl_randomised WHERE `HospitalID` = $hospital AND `trialID` = $trial";
+        
+        $result = $db->get_results($query);
+        $string = current($result); 
+                   $arr =  "\"".reset($string)."\"";
+                  $last = substr($arr, -2);
+                    $last = str_replace("\"", "",$last);
+            
+            
+
+
+                $result = $db->insert(TBL_CLINICS,
+				array(
+					'hospital' => $hospital,
+					'trial' => $trial,
+					'schedule' => date('Y-m-d', strtotime(date('Y-m-d',strtotime($schedule)) .' +'.$i.' day')),
+					'room' => $room,
+                                'expected' => $expected,
+                                'treatment' => $last 
+                
+				)
+			);
+
+              $new22= substr_replace($arr, "", -2);
+        $new2 = str_replace("\"", "",$new22);
+           $sql = "UPDATE tbl_randomised SET RandomString=$new2 WHERE HospitalID = $hospital AND TrialID = $trial";
+$result = $db->query($sql);
+        }
+        }else{
+              $query = "SELECT `RandomString` FROM tbl_randomised WHERE `HospitalID` = $hospital AND `trialID` = $trial";
+        
+        $result = $db->get_results($query);
+        $string = current($result); 
+                   $arr =  "\"".reset($string)."\"";
+                  $last = substr($arr, -2);
+                    $last = str_replace("\"", "",$last);
+            
+            
+            
 			$result = $db->insert(TBL_CLINICS,
 				array(
-					'ID' => $guid,
 					'hospital' => $hospital,
 					'trial' => $trial,
 					'schedule' => date('Y-m-d',strtotime($schedule)),
@@ -272,6 +324,8 @@
                 
 				)
 			);
+            
+        }
         
 			
 //        $sql = "SELECT * FROM tbl_hospital WHERE ID = $hospital";

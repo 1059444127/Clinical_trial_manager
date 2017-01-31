@@ -43,8 +43,14 @@ else:
 			</select>
 		</div>
 		<div class="form-group">
-			<label for="schedule">Schedule Date <span class="required">*</span></label>
+			<label for="schedule">Start Date <span class="required">*</span></label>
 			<input type="text" name="schedule" class="form-control input-datepicker require" readonly="readonly"/>
+		</div>
+        
+        
+        		<div class="form-group">
+			<label for="schedule">End Date <span class="required">*</span></label>
+			<input type="text" name="schedule2" class="form-control input-datepicker require" readonly="readonly"/>
 		</div>
   
         

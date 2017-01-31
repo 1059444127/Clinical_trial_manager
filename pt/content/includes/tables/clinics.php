@@ -57,7 +57,9 @@ else:
 <td bgcolor =<?php echo $string; ?>><?php echo $bbo3; ?></td>
         
     
-				<td><?php echo date('M d,Y',strtotime($data->schedule));?></td>
+				<td><?php echo date('M d,Y',strtotime($data->schedule));     
+                    ?>
+                </td>
 				<td><?php echo stripslashes($hospital->name);?></td>
 				<td><?php echo stripslashes($room->name);?></td>
 				<td><?php echo date('M d,Y',strtotime($data->created_on));?></td>
@@ -90,14 +92,17 @@ else:
 					<?php endif; 
                     }
                     ?>
-					
+								<?php if ($val6==0){?>		
 					<?php if( user_can('edit_clinic') ): ?>
 					<a href="<?php echo site_url();?>/edit-clinic/?id=<?php echo $data->ID;?>" class="btn btn-dark btn-xs"><i class="fa fa-edit"></i> Edit</a>
 					<?php endif; ?>
 					
+
 					<?php if( user_can('delete_clinic') ): ?>
-					<a href="#" class="btn btn-danger btn-xs" onclick="javascript:delete_function(this);" data-id="<?php echo $data->ID;?>" data-action="delete_clinic"><i class="fa fa-trash"></i> Delete</a>
+                    <a href="#" class="btn btn-danger btn-xs" onclick="javascript:delete_function(this);" data-id="<?php echo $data->ID;?>" data-action="delete_clinic"><i class="fa fa-trash"></i> Delete</a>
+
 					<?php endif; ?>
+                                        <?php }?>
 				</td>
 			</tr>
 			<?php
