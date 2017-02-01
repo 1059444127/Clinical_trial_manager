@@ -445,10 +445,10 @@ $result = $db->query($sql);
 		if( user_can('delete_clinic') && can_access('clinic', $id) ):
 			$data = get_tabledata(TBL_CLINICS,true,array('ID' => $id) ) ;
 			
-			if(is_admin()){
+			//if(is_admin()){
 				$args  = array('ID' => $id);
 				$result = $db->delete(TBL_CLINICS,$args);
-			}
+			//}
 			
 			if($result):
 				$notification_args = array(
