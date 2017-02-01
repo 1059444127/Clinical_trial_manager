@@ -245,6 +245,7 @@
         
         
 		if( user_can('add_clinic') ):
+        
 			$validation_args = array(
 				'trial' => $trial,
 				'hospital' => $hospital,
@@ -253,10 +254,7 @@
                 'expected' => $expected
 			);
 			
-			if(is_value_exists(TBL_CLINICS,$validation_args)){
-				echo 2;
-				exit();
-			}
+
 			
 			$guid = get_guid(TBL_CLINICS);
 			
@@ -274,8 +272,22 @@
         for($i = 0; $i<=$dDiff;$i++){
             
             
+
+            
         $query = "SELECT `RandomString` FROM tbl_randomised WHERE `HospitalID` = $hospital AND `trialID` = $trial";
-        
+
+            
+            
+            $checker_fields = array(
+				'trial' => $trial,
+				'hospital' => $hospital,
+				'schedule' => date('Y-m-d', strtotime(date('Y-m-d',strtotime($schedule)) .' +'.$i.' day')),
+				'room' => $room,
+			);
+        if(is_value_exists(TBL_CLINICS,$checker_fields)){
+
+			}else{
+            
         $result = $db->get_results($query);
         $string = current($result); 
                    $arr =  "\"".reset($string)."\"";
@@ -302,7 +314,23 @@
            $sql = "UPDATE tbl_randomised SET RandomString=$new2 WHERE HospitalID = $hospital AND TrialID = $trial";
 $result = $db->query($sql);
         }
+        }
         }else{
+            
+            
+                        $checker_fields2 = array(
+				'trial' => $trial,
+				'hospital' => $hospital,
+				'schedule' => date('Y-m-d',strtotime($schedule)),
+				'room' => $room,
+			);
+        if(is_value_exists(TBL_CLINICS,$checker_fields2)){
+			echo 2;
+				exit();
+			}else{
+            
+            
+
               $query = "SELECT `RandomString` FROM tbl_randomised WHERE `HospitalID` = $hospital AND `trialID` = $trial";
         
         $result = $db->get_results($query);
@@ -325,6 +353,7 @@ $result = $db->query($sql);
 				)
 			);
             
+        }
         }
         
 			

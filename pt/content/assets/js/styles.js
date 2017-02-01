@@ -979,7 +979,7 @@ $(document).ready(function() {
 //					alert_notification('Failed','Could not create new clinic, Please try again !','info');
 				}else if(res == 2 ){ // if failed then go inside
 					class_name.parents('.form-group').addClass('has-error');
-					alert_notification('Clinic Already Exist','Clinic name you entered is already exists, please try another clinic name !','info');
+					alert_notification('Clinic Already Exist','Clinic you have entered is already exists, please try another clinic name !','info');
 				}else if (res == 1 ){ // if success then go inside
 					form.trigger('reset');
 					alert_notification('Success !','Clinic has been successfully created !','success');
