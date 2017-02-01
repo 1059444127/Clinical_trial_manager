@@ -10,7 +10,7 @@ if($_SERVER['SERVER_ADDR'] == '10.161.146.74' || $_SERVER['SERVER_ADDR'] == '10.
 	$db_host = '10.161.128.194';
 	$webpath = 'WebProjects/randomisation/randomisation_website/pt';
 	if($_SERVER['SERVER_ADDR'] == '10.161.146.74') {
-		$webpath = 'trialRandomisation';
+		$webpath = 'trialRandomiser';
 	}
 }
 define('DB_NAME', $db_name);
