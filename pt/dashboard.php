@@ -275,28 +275,82 @@ $val1+=$res5->actual;
                                                 $sq11 = $db->get_results($sq1);
                                                 $inc = 0;
                                                 foreach($sq11 as $val1):
-                                                
+                                                ${'arr'.$inc} = NULL;                                               
                                                 $sq2 = "SELECT * FROM tbl_key WHERE HospitalID = $hosp AND TrialID = $val1->TrialID";
-                                                $inc +=1;
+
+ 
                                                 $sq22 = $db->get_results($sq2);
+                                                                                                $count = 0;
                                                 foreach($sq22 as $val2):
-                                                $count = 0;
+                                                                                                $inc +=1;
+                                                $count +=1;
+
                                                 $sq3 = "SELECT * FROM tbl_clinics WHERE trial = $val1->TrialID AND hospital = $hosp AND booked = 1 AND treatment = $val2->KeyVal";
                                                 $sq33 = $db->get_results($sq3);
-                                                foreach($sq33 as $val3):
+
+                                                ${'arr'.$inc}[$count] = sizeof($sq33);
                                                 
-                                                $count += 1;
-                                                $sq4 = "SELECT COUNT(*) FROM tbl_bookings WHERE clinic = $val3->ID";
-                                                $sq44 = $db->query($sq4);
- 
-    
+
+
                                                 
                                                 endforeach;
+$val1 = implode(" ",$arr1);
+$val2 = implode(" ",$arr2);
+                                                  $sq5 = "SELECT ClinicsNum FROM tbl_hospitals WHERE ID = $hosp";
+                                                $sq55 = $db->get_results($sq5);
                                                 
-                                                echo $sq44;                                                                                                
+
                                                 echo "<br>";
-                                                endforeach;
+                                                $tots = $sq55[0]->ClinicsNum;
+                      
                                                 
+                                                
+                                                ?>
+                                                                                                
+                                                <script>
+                                                Highcharts.chart('container3', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Outstanding and Completed Clinics'
+    },
+    tooltip: {
+    
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: 'No. of Clinics for: Treatment A',
+            y: <?php echo $val1;?>
+        },  {
+            name: 'No. of Clinics for: Treatment B',
+            y: <?php echo $val2?>
+        },{
+            name: 'Remaining Clinics',
+            y: <?php echo $tots-($val1+$val2);?>
+        } ]
+    }]
+});
+                                                </script>
+                                                
+                                                <?php
                                                 endforeach;
 
                                                 
