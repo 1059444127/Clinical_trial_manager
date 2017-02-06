@@ -19,6 +19,8 @@ ini_set('display_errors', 0);
         </title>
         <script src="<?php echo JS_URL;?>jquery-1.12.4.min.js"></script>
         <script src="<?php echo JS_URL;?>canvasjs.min.js"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
         
         <?php echo get_wp_head();?>
     </head>
@@ -178,7 +180,6 @@ ini_set('display_errors', 0);
                             </div>
 
                             <div class="row">
-                                <!-- Start to do list -->
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="x_panel">
                                         <div class="x_title">
@@ -264,16 +265,294 @@ $val1+=$res5->actual;
                                         </div>
                                         <div class="x_content">
                                             <div class="">
+                                            <div id="container3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                                                <?php
+                                                                                                
+                             $hosp = get_current_user_hospital();
+                                                
+                                                
+                                                $sq1 = "SELECT * FROM tbl_done WHERE HospitalID = $hosp";
+                                                $sq11 = $db->get_results($sq1);
+                                                $inc = 0;
+                                                foreach($sq11 as $val1):
+                                                
+                                                $sq2 = "SELECT * FROM tbl_key WHERE HospitalID = $hosp AND TrialID = $val1->TrialID";
+                                                $inc +=1;
+                                                $sq22 = $db->get_results($sq2);
+                                                foreach($sq22 as $val2):
+                                                $count = 0;
+                                                $sq3 = "SELECT * FROM tbl_clinics WHERE trial = $val1->TrialID AND hospital = $hosp AND booked = 1 AND treatment = $val2->KeyVal";
+                                                $sq33 = $db->get_results($sq3);
+                                                foreach($sq33 as $val3):
+                                                
+                                                $count += 1;
+                                                $sq4 = "SELECT COUNT(*) FROM tbl_bookings WHERE clinic = $val3->ID";
+                                                $sq44 = $db->query($sq4);
+ 
+    
+                                                
+                                                endforeach;
+                                                
+                                                echo $sq44;                                                                                                
+                                                echo "<br>";
+                                                endforeach;
+                                                
+                                                endforeach;
+
+                                                
+                               ?>
                                                 
 
-                                                <?php 
                                                 
                                                 
-                                                ?>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                
+                                
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <h2>Current Trials <small>Clinics Availability</small></h2>
+                                            <ul class="nav navbar-right panel_toolbox">
+                                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a> </li>
+                                                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li><a href="#">Settings 1</a> </li>
+                                                        <li><a href="#">Settings 2</a> </li>
+                                                    </ul>
+                                                </li>
+                                                <li><a class="close-link"><i class="fa fa-close"></i></a> </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <div class="">
+
+
+<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+
+
+<?php
+                                                
+                             $hosp = get_current_user_hospital();
+                                                $sq1 = "SELECT * FROM tbl_done WHERE HospitalID = $hosp";
+                                                $sq11 = $db->get_results($sq1);
+                                                foreach($sq11 as $val1):
+                                                $sq2 = "SELECT * FROM tbl_key WHERE HospitalID = $hosp AND TrialID = $val1->TrialID";
+                                                
+                                                $sq22 = $db->get_results($sq2);
+                                                foreach($sq22 as $val2):
+                                                                                                $count = 0;
+                                                $sq3 = "SELECT * FROM tbl_clinics WHERE trial = $val1->TrialID AND hospital = $hosp AND booked = 1";
+                                                $sq33 = $db->get_results($sq3);
+                                                foreach($sq33 as $val3):
+                                                $count += 1;
+                                                $sq4 = "SELECT COUNT(*) FROM tbl_bookings WHERE clinic = $val3->ID";
+                                                $sq44 = $db->query($sq4);
+                                                foreach($sq44 as $val4): 
+
+                                                ${'arr'.$inc}[$count] = $val4->actual;
+
+                                                    
+                                                endforeach;
+
+                                                endforeach;
+
+                                                endforeach;
+                                                
+                                                $sq5 = "SELECT ClinicsNum FROM tbl_hospitals WHERE ID = $hosp";
+                                                $sq55 = $db->get_results($sq5);
+                                                
+
+                                                echo "<br>";
+                                                $tots = $sq55[0]->ClinicsNum;
+                                                endforeach;
+
+                                                
+                               ?>
+                                                
+                                                <script>
+                                                Highcharts.chart('container2', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Outstanding and Completed Clinics'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: 'Closed Clinics',
+            y: <?php echo $count;?>
+        },  {
+            name: 'Remaining Clinics',
+            y: <?php echo $tots - $count?>
+        } ]
+    }]
+});
+                                                </script>
+                                                         
+                                                
+                                                
+      
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                              
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <h2>Current Trials <small>Treatments against Clinics</small></h2>
+                                            <ul class="nav navbar-right panel_toolbox">
+                                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a> </li>
+                                                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li><a href="#">Settings 1</a> </li>
+                                                        <li><a href="#">Settings 2</a> </li>
+                                                    </ul>
+                                                </li>
+                                                <li><a class="close-link"><i class="fa fa-close"></i></a> </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <div class="">
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+
+<?php
+                             $hosp = get_current_user_hospital();
+                                                $sq1 = "SELECT * FROM tbl_done WHERE HospitalID = $hosp";
+                                                $sq11 = $db->get_results($sq1);
+                                                foreach($sq11 as $val1):
+                                                $inc = 0;
+                                                $sq2 = "SELECT * FROM tbl_key WHERE HospitalID = $hosp AND TrialID = $val1->TrialID";
+                                                $sq22 = $db->get_results($sq2);
+                                                foreach($sq22 as $val2):
+                                                $inc +=1;
+                                                
+                                                ${'arr'.$inc} = NULL;
+                                                $sq3 = "SELECT * FROM tbl_clinics WHERE trial = $val1->TrialID AND hospital = $hosp AND booked = 1 AND treatment = $val2->KeyVal";
+                                                $sq33 = $db->get_results($sq3);
+                                                                                                $count = 0;
+                                                foreach($sq33 as $val3):
+                                                
+                                                $sq4 = "SELECT * FROM tbl_bookings WHERE clinic = $val3->ID";
+                                                $sq44 = $db->get_results($sq4);
+
+                                                foreach($sq44 as $val4): 
+                                                $count+=1;
+                                                ${'arr'.$inc}[$count] = $val4->actual;
+
+                                                    
+                                                endforeach;
+                                            
+                                                endforeach;
+                                                endforeach;
+
+                                                
+                                            $commaList1 = implode(', ', $arr1);
+                                                
+                                                echo "<br>";
+                                            $commaList2 = implode(', ', $arr2);
+                                                ?>
+
+
+
+                                                <script>
+                                                Highcharts.chart('container', {
+    chart: {
+        type: 'areaspline'
+    },
+    title: {
+        text: 'Participants - Treatments'
+    },
+    subtitle: {
+        text: 'Number of participants Treated for each Treatment'
+    },
+
+                                                
+    xAxis: {
+        categories: []
+    },
+    yAxis: {
+        title: {
+            text: 'Consented Participants'
+        }
+    },
+    plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: true
+            },
+            enableMouseTracking: false
+        }
+    },
+    series: [{
+        name: 'Treatment A',
+        data: [<?php echo $commaList1; ?>]
+    }, {
+        name: 'Treatment B',
+        data: [<?php echo $commaList2; ?>]
+    }]
+});
+                                                    
+                                                </script>
+                                                
+                                                
+                                                <?php
+                                            
+endforeach;
+                                                
+                                                ?>
+
+                                                
+                                           
+                                                         
+                                                
+                                                
+      
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                
+                                
                             </div>
                     
                 
