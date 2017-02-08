@@ -509,94 +509,89 @@ $val2 = implode(" ",$arr2);
 
 
 <?php
-                             $hosp = get_current_user_hospital();
+    
+                                 $hosp = get_current_user_hospital();
+                                                
+                                                
                                                 $sq1 = "SELECT * FROM tbl_done WHERE HospitalID = $hosp";
                                                 $sq11 = $db->get_results($sq1);
-                                                foreach($sq11 as $val1):
                                                 $inc = 0;
+                                                foreach($sq11 as $val1):
+                                                ${'arr'.$inc} = NULL;                                               
+                                                ${'arr0'.$inc} = NULL;                                               
                                                 $sq2 = "SELECT * FROM tbl_key WHERE HospitalID = $hosp AND TrialID = $val1->TrialID";
+
+ 
                                                 $sq22 = $db->get_results($sq2);
+                                                                                                $count = 0;
                                                 foreach($sq22 as $val2):
-                                                $inc +=1;
+                                                                                                $inc +=1;
                                                 
-                                                ${'arr'.$inc} = NULL;
+
                                                 $sq3 = "SELECT * FROM tbl_clinics WHERE trial = $val1->TrialID AND hospital = $hosp AND booked = 1 AND treatment = $val2->KeyVal";
                                                 $sq33 = $db->get_results($sq3);
-                                                                                                $count = 0;
-                                                foreach($sq33 as $val3):
+            foreach($sq33 as $val4):
+            $count +=1;
+            
+
+
+                                                ${'arr0'.$inc}[$count] = sizeof($sq33);
+
+                                                ${'arr'.$inc}[$count] = $val4->schedule;
+
+
                                                 
-                                                $sq4 = "SELECT * FROM tbl_bookings WHERE clinic = $val3->ID";
-                                                $sq44 = $db->get_results($sq4);
-
-                                                foreach($sq44 as $val4): 
-                                                $count+=1;
-                                                ${'arr'.$inc}[$count] = $val4->actual;
-
-                                                    
-                                                endforeach;
-                                            
                                                 endforeach;
                                                 endforeach;
-
-                                                
-                                            $commaList1 = implode(', ', $arr1);
-                                                
-                                                echo "<br>";
-                                            $commaList2 = implode(', ', $arr2);
-                                                ?>
-
-
-
-                                                <script>
-                                                Highcharts.chart('container', {
-    chart: {
-        type: 'areaspline'
-    },
-    title: {
-        text: 'Participants - Treatments'
-    },
-    subtitle: {
-        text: 'Number of participants Treated for each Treatment'
-    },
-
-                                                
-    xAxis: {
-        categories: []
-    },
-    yAxis: {
-        title: {
-            text: 'Consented Participants'
-        }
-    },
-    plotOptions: {
-        line: {
-            dataLabels: {
-                enabled: true
-            },
-            enableMouseTracking: false
-        }
-    },
-    series: [{
-        name: 'Treatment A',
-        data: [<?php echo $commaList1; ?>]
-    }, {
-        name: 'Treatment B',
-        data: [<?php echo $commaList2; ?>]
-    }]
-});
-                                                    
-                                                </script>
+$val1 = implode(",",$arr1);
+$val4 = implode(" - ",$arr01);
+$val2 = implode(",",$arr2);
+$val6 = implode(" - ",$arr02);
+                                                  $sq5 = "SELECT ClinicsNum FROM tbl_hospitals WHERE ID = $hosp";
+                                                $sq55 = $db->get_results($sq5);
+                                                $tots = $sq55[0]->ClinicsNum;
+                 
+  echo $val1;
+  echo $val4;
+            echo "<br>";
+  echo $val2;
+  echo $val6;
                                                 
                                                 
-                                                <?php
-                                            
-endforeach;
+//    
+//                             $hosp = get_current_user_hospital();
+//                                                $sq1 = "SELECT * FROM tbl_done WHERE HospitalID = $hosp";
+//                                                $sq11 = $db->get_results($sq1);
+//                                                foreach($sq11 as $val1):
+//                                                $inc = 0;
+//                                                $sq2 = "SELECT * FROM tbl_key WHERE HospitalID = $hosp AND TrialID = $val1->TrialID";
+//                                                $sq22 = $db->get_results($sq2);
+//                                                foreach($sq22 as $val2):
+//                                                $inc +=1;
+//                                                
+//                                                ${'arr'.$inc} = NULL;
+//                                                $sq3 = "SELECT * FROM tbl_clinics WHERE trial = $val1->TrialID AND hospital = $hosp AND booked = 1";
+//                                                $sq33 = $db->get_results($sq3);
+//                        
+//            $count = 0;
+//            $arr[] = NULL;
+//                                                foreach($sq33 as $val3):
+//            $count+=1;
+//            $stq = "'".$val3->schedule."'";
+//            $arr[$count]= $stq;
+//            
+//            
+//                                                endforeach;
+//$val1 = implode(",",$arr);
+//            echo $val1;
+//            endforeach;
+
+                             
+            
+                                                endforeach;
                                                 
                                                 ?>
 
-                                                
-                                           
-                                                         
                                                 
                                                 
       
