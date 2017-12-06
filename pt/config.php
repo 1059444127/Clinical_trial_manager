@@ -3,12 +3,12 @@ $db_name = 'randomise';
 $db_user = 'root';
 $db_password = '';
 $db_host = 'localhost';
-$webpath = 'WebProjects/randomisation/pt';
+$webpath = 'pt';
 if($_SERVER['SERVER_ADDR'] == '10.161.146.74' || $_SERVER['SERVER_ADDR'] == '10.161.128.46') {
 	$db_user = 'markyhb';
 	$db_password = 'ore28gon';
 	$db_host = '10.161.128.194';
-	$webpath = 'WebProjects/randomisation/randomisation_website/pt';
+	$webpath = 'pt';
 	if($_SERVER['SERVER_ADDR'] == '10.161.146.74') {
 		$webpath = 'trialRandomiser';
 	}
