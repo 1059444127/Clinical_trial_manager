@@ -64,3 +64,7 @@ echo $a->ID;
 endforeach;
 
 ?>
+<!DOCTYPE html>
+<html>
+
+</html>
