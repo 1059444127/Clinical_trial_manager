@@ -123,9 +123,11 @@ else:
                                           unset(${'a'.$i});
                                         ${'a'.$i}  = array();
                               }                
-
         
         $half = $ClinNum/$treatVal;
+        if($half>40){
+            $half=40;
+        }
                         
         foreach(range(1, $treatVal) as $i) {
                           $resultz = $db->query($sql1);

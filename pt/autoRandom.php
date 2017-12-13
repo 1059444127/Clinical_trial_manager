@@ -32,35 +32,44 @@ $vals = array();
             echo "Treatment: ".$treatment->name;
             echo "<br>";
             $s2 = "SELECT COUNT(*) AS qq FROM tbl_clinics WHERE booked=1 AND hospital = $a->HospitalID AND trial = $a->TrialID AND treatment=$c->KeyVal";
-
-
             $r2 = $db->get_results($s2);
-            $divVal = ($newTot/2) - $r2[0]->qq;
+            $s5 = "SELECT COUNT(*) AS pp FROM tbl_treatments WHERE trial = $a->TrialID";
+            $r5 = $db->get_results($s5);
+            $divVal = ($newTot/$r5[0]->pp) - $r2[0]->qq;
             echo "Booked: ". $r2[0]->qq;
             echo "<br>";
-echo $divVal;
-
-for($i = 0; $i<$divVal; $i++){
-    $vals[] = $c->KeyVal;
+            echo "HALF: ".$divVal;
+if($divVal>40){
+    $divVal=40;
+        echo "HALFWAY EXCEEDS 40, SETTING MAX TO 40";
 }
             echo "<br>";
+            echo "NEW TOT: ".$newTot;
+            echo "<br>";
+
+            for($i = 0; $i<$divVal; $i++){
+                $vals[] = $c->KeyVal;
+            }
+
 
         endforeach;
     
 
 
-if(($a->ClinicsNum/2)>=$r4[0]->qq && $newTot % 2 == 0) {
+
+if($newTot % 2 == 0) {
 shuffle($vals);
 $new = implode("",$vals);
 echo "NEW Randomised String: ". $new;
 echo "<br>";
-echo "<br>";
 $sql = "UPDATE tbl_randomised SET RandomString=$new WHERE ID=$a->ID";
 $result = $db->query($sql);
-echo "UPDATED RANDOMISED STRING";
+echo "UPDATED DATABASE RANDOMISED STRING";
 echo "<br>";
 }
+
 echo $a->ID;
+echo "<br>";
 endforeach;
 
 ?>
